@@ -87,6 +87,8 @@ class RunsContainer(object):
 
         self.output_dir = output_dir if output_dir else tempfile.mkdtemp()
 
+        print(f"runs-container dir: {self.output_dir}")
+
         if file_format.upper() == "AUTO" or file_format is None:
             file_format = detect_fileformat(folders=self.folders)
             self.logger.info("Format of input detected automatically: %s", file_format)
@@ -162,6 +164,7 @@ class RunsContainer(object):
         return self._reduce_cr_to_budget(self.data[folder], [budget])
 
     def get_all_runs(self):
+        print(list(self.data.values()))
         return list(self.data.values())
 
     def get_rng(self):
@@ -224,6 +227,8 @@ class RunsContainer(object):
         budget_hash = ['budgetmix-%d' % (hash(str(budgets)))] if len(set([frozenset(b) for b in budgets])) != 1 else []
         budgets = [a for b in [x for x in budgets if x is not None] for a in b] + budget_hash
 
+        print(f"runs-container _aggregate dir: {self.output_dir}")
+
         if ConfiguratorRun.identify(path_to_folder, budgets) in self.cache:
             return self.cache[ConfiguratorRun.identify(path_to_folder, budgets)]
 
@@ -242,6 +247,8 @@ class RunsContainer(object):
                               rh_name, len(rh.data), len(rh.get_all_configs()), len(runs))
 
         traj = combine_trajectories([run.trajectory for run in runs], self.logger)
+
+        print(f"runs-container _aggregate_later dir: {self.output_dir}")
 
         new_cr = ConfiguratorRun(runs[0].scenario,
                                  orig_rh,

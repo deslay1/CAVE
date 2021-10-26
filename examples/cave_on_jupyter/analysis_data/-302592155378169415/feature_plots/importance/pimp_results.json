@@ -1,0 +1,12 @@
+{
+    "forward-selection": {
+        "imp": {
+            "None": 1.6444719432813022,
+            "nvars": 1.21141399856701
+        },
+        "order": [
+            "None",
+            "nvars"
+        ]
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "forward-selection": {
+        "imp": {
+            "None": 0.9124016460512896,
+            "sp-clause-del-heur": 0.901138329932069
+        },
+        "order": [
+            "None",
+            "sp-clause-del-heur"
+        ]
+    }
+}

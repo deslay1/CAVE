@@ -1,0 +1,12 @@
+{
+    "forward-selection": {
+        "imp": {
+            "None": 1.2590058037536431,
+            "sp-var-activity-inc": 1.1552424875444216
+        },
+        "order": [
+            "None",
+            "sp-var-activity-inc"
+        ]
+    }
+}
