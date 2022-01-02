@@ -86,15 +86,22 @@ class ConfiguratorRun(object):
         self.incumbent = self.trajectory[-1]['incumbent'] if self.trajectory else None
         self.feature_names = self._get_feature_names()
 
+        print(f'default : {self.default}')
+        print(f'incumbent: {self.incumbent}')
+        print(f'feature_names : {self.feature_names}')
+
         # Create combined runhistory to collect all "real" runs
         self.combined_runhistory = RunHistory()
+        print(f'combined runhistory : {self.combined_runhistory}')
         self.combined_runhistory.update(self.original_runhistory, origin=DataOrigin.INTERNAL)
+        print(f'combined runhistory : {self.combined_runhistory}')
         if self.validated_runhistory is not None:
             self.combined_runhistory.update(self.validated_runhistory, origin=DataOrigin.EXTERNAL_SAME_INSTANCES)
 
         # Create runhistory with estimated runs (create Importance-object of pimp and use epm-model for validation)
         self.epm_runhistory = RunHistory()
         self.epm_runhistory.update(self.combined_runhistory)
+        print(f'EPM runhistory : {self.combined_runhistory}')
 
         # Initialize importance and validator
         self._init_pimp_and_validator()
@@ -258,6 +265,9 @@ class ConfiguratorRun(object):
             self.validated_runhistory.update(new_rh)
             self.combined_runhistory_rh.update(new_rh)
         elif method == "epm":
+            print("\nVALIDATION ON INSTANCES STARTED, do we have any instances?")
+            print(f'instances test: {self.scenario.test_insts}')
+            print(f'instances train: {self.scenario.train_insts}\n')
             # Only do test-instances if features for test-instances are available
             instance_mode = 'train+test'
             if (any([i not in self.scenario.feature_dict for i in self.scenario.test_insts]) and

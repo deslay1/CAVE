@@ -24,16 +24,13 @@ class BaseParameterImportance(BaseAnalyzer):
             [forward-selection, ablation, fanova, lpi]
         """
         runs_by_budget = self.runscontainer.get_aggregated(keep_budgets=True, keep_folders=True)
+        print("base_paramter_importance line 26: keepFolders=True")
 
         formatted_budgets = format_budgets(self.runscontainer.get_budgets(), allow_whitespace=True)
-
-        print(formatted_budgets.values())
 
         self.result['Importances Per Parameter'] = {}
         result = self.result['Importances Per Parameter']
         for budget, run in zip(formatted_budgets.values(), runs_by_budget):
-            print(budget)
-            print(run)
             self.logger.info("... parameter importance {} on {}".format(modus, run.get_identifier()))
             if budget not in result:
                 result[budget] = OrderedDict()
@@ -47,7 +44,7 @@ class BaseParameterImportance(BaseAnalyzer):
                 continue
             
             try:
-                print(run.output_dir)
+                print(f'Output directory: {run.output_dir}')
                 run.pimp.evaluate_scenario([modus], run.output_dir)
             except RuntimeError as e:
                 err = "Encountered error '{}' for '{}' in '{}', (for fANOVA this can e.g. happen with too few " \
