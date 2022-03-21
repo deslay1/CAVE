@@ -1,5 +1,6 @@
 """
 Script that formats the results and scenario of a HyperMapper optimization procedure to files supported by CAVE.
+We create a configspace.json file and a folder with some .csv files.
 """
 # 1
 # CAVE keyword : (->) HM keyword
@@ -14,8 +15,8 @@ import pathlib
 from shutil import copyfile
 
 key = "rosenbrock"
+cave_dir = f"CAVE/{key}/" # Where we create our output directory. This directory should also have a standard "scenario.txt file". See hm_to_cave_example/
 results_dir = f"CAVE/{key}/results/" # Hypermapper results path
-cave_dir = f"CAVE/{key}/" # Where we should create the output folder
 search_space_file = f"CAVE/{key}/search_space_{key}.json" # Search space file consisting of the input parameters
 
 for _, file in enumerate([x for x in os.listdir(results_dir) if x.endswith(".csv")]):
