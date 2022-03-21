@@ -1,4 +1,0 @@
-shared_buffers,work_mem,random_page_cost,effective_io_concurrency,max_wal_size,max_parallel_workers_per_gather,max_parallel_workers,max_worker_processes,checkpoint_timeout,checkpoint_completion_target,cost,cpu_time,wallclock_time,evaluations
-4096,6990,1.1,200,8,2,4,4,5,0.9,-843.2660542840472,0.1,0.1,0
-7168,23552,7.5,300,16,16,8,4,10,0.9,-991.1697738112448,0.1,0.1,0
-5632,13312,2.0,1,64,2,8,4,10,0.9,-1014.5470311774372,0.1,0.1,0

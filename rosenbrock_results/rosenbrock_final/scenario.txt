@@ -1,0 +1,2 @@
+paramfile = ./configspace_final.json
+run_obj = quality
